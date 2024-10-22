@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Health;
 
-public class TakeDamageCollision : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private HealthPoints _healthPoints;
-
-    private void OnTriggerEnter(Collider other)
+    public class TakeDamageCollision : MonoBehaviour
     {
-        _healthPoints.LoseHealthEvent?.Invoke();
+        [SerializeField] private HealthPoints _healthPoints;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            _healthPoints.LoseHealthEvent?.Invoke();
+        }
     }
 }

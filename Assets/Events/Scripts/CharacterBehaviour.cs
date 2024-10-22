@@ -1,52 +1,54 @@
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using Health;
 
-public class CharacterBehaviour : MonoBehaviour
-{
-    [SerializeField] private HealthPoints _healthPoints;
-    [SerializeField, Range(0, 3)] private int _health;
-    private int value;
+namespace Player
+{    public class CharacterBehaviour : MonoBehaviour
+    {
+        [SerializeField] private HealthPoints _healthPoints;
+        [SerializeField, Range(0, 3)] private int _health;
+        private int value;
 
-    private void Awake()
-    {
-        Health = 3;
-    }
-
-    private void Start()
-    {
-        _healthPoints.LoseHealthEvent += DebugLog;
-        _healthPoints.LoseHealthEvent += LoseHealth;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Awake()
         {
-            _healthPoints.LoseHealthEvent?.Invoke();
+            Health = 3;
         }
-    }
 
-    public int Health
-    {
-        get => _health;
-        set
+        private void Start()
         {
-            _health = Mathf.Clamp(value, 0, 3);
+            _healthPoints.LoseHealthEvent += DebugLog;
+            _healthPoints.LoseHealthEvent += LoseHealth;
         }
-    }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _healthPoints.LoseHealthEvent?.Invoke();
+            }
+        }
 
-    private void DebugLog()
-    {
-        Debug.Log(Health);
-    }
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = Mathf.Clamp(value, 0, 3);
+            }
+        }
 
-    public void LoseHealth()
-    {
-        Health -= 1;
-    }
+        private void DebugLog()
+        {
+            Debug.Log(Health);
+        }
 
-    private void OnDisable()
-    {
-        _healthPoints.LoseHealthEvent -= DebugLog;
-        _healthPoints.LoseHealthEvent -= LoseHealth;
+        public void LoseHealth()
+        {
+            Health -= 1;
+        }
+
+        private void OnDisable()
+        {
+            _healthPoints.LoseHealthEvent -= DebugLog;
+            _healthPoints.LoseHealthEvent -= LoseHealth;
+        }
     }
 }
