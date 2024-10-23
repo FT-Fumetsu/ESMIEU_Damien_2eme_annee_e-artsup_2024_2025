@@ -6,7 +6,6 @@ namespace UserInterface
 {
     public class HealthBarUI : MonoBehaviour
     {
-
         [SerializeField] private HealthPoint _healthPoints;
         [SerializeField] private Slider _slider;
         [SerializeField, Range(0, 3)] private int _maxHealth;

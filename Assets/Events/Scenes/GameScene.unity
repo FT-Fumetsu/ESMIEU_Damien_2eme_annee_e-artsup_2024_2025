@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 1393613516}
   - component: {fileID: 1393613519}
   - component: {fileID: 1393613520}
+  - component: {fileID: 1393613521}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -559,6 +560,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1393613521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393613515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6228588c665d21742b71304e8e2e3f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: {fileID: 11400000, guid: ce8d976995bda7346b7ab142c24e20e9, type: 2}
+  _characterBehaviour: {fileID: 1805933783}
 --- !u!1 &1644038352
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +667,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1805933782}
   - component: {fileID: 1805933783}
-  - component: {fileID: 1805933784}
   - component: {fileID: 1805933785}
   - component: {fileID: 1805933786}
   m_Layer: 0
@@ -692,19 +706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthPoint: {fileID: 11400000, guid: ce8d976995bda7346b7ab142c24e20e9, type: 2}
   _health: 3
---- !u!114 &1805933784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805933781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6228588c665d21742b71304e8e2e3f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoints: {fileID: 11400000, guid: ce8d976995bda7346b7ab142c24e20e9, type: 2}
 --- !u!136 &1805933785
 CapsuleCollider:
   m_ObjectHideFlags: 0
