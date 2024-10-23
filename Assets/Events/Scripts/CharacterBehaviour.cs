@@ -4,9 +4,8 @@ using Health;
 namespace Player
 {    public class CharacterBehaviour : MonoBehaviour
     {
-        [SerializeField] private HealthPoints _healthPoints;
+        [SerializeField] private HealthPoint _healthPoint;
         [SerializeField, Range(0, 3)] private int _health;
-        private int value;
 
         private void Awake()
         {
@@ -15,14 +14,14 @@ namespace Player
 
         private void Start()
         {
-            _healthPoints.LoseHealthEvent += DebugLog;
-            _healthPoints.LoseHealthEvent += LoseHealth;
+            _healthPoint.LoseHealthEvent += DebugLog;
+            _healthPoint.LoseHealthEvent += LoseHealth;
         }
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _healthPoints.LoseHealthEvent?.Invoke();
+                _healthPoint.LoseHealthEvent?.Invoke();
             }
         }
 
@@ -47,8 +46,8 @@ namespace Player
 
         private void OnDisable()
         {
-            _healthPoints.LoseHealthEvent -= DebugLog;
-            _healthPoints.LoseHealthEvent -= LoseHealth;
+            _healthPoint.LoseHealthEvent -= DebugLog;
+            _healthPoint.LoseHealthEvent -= LoseHealth;
         }
     }
 }

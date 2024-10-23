@@ -5,7 +5,7 @@ namespace Enemy
 {
     public class TakeDamageCollision : MonoBehaviour
     {
-        [SerializeField] private HealthPoints _healthPoints;
+        [SerializeField] private HealthPoint _healthPoints;
 
         private void OnTriggerEnter(Collider other)
         {
