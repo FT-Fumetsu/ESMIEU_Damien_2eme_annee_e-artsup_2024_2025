@@ -1,33 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-[CustomEditor(typeof(SuperComponent))]
-[CanEditMultipleObjects]
-public class SuperComponentEditor : Editor
+namespace ComponentEditor
 {
-    SerializedProperty _sceneIndexProperty;
-    SerializedProperty _sampleTextProperty;
-
-
-    void OnEnable()
+    [CustomEditor(typeof(SuperComponent))]
+    [CanEditMultipleObjects]
+    public class SuperComponentEditor : Editor
     {
-        _sampleTextProperty = serializedObject.FindProperty("_sampleText");
-        _sceneIndexProperty = serializedObject.FindProperty("_sceneIndex");
-    }
+        SerializedProperty _sceneIndexProperty;
+        SerializedProperty _sampleTextProperty;
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(_sampleTextProperty);
 
-        EditorGUILayout.LabelField(_sampleTextProperty.stringValue);
+        public void OnEnable()
+        {
+            _sampleTextProperty = serializedObject.FindProperty("_sampleText");
+            _sceneIndexProperty = serializedObject.FindProperty("_sceneIndex");
+        }
 
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(_sceneIndexProperty);
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            EditorGUILayout.PropertyField(_sampleTextProperty);
 
-        serializedObject.ApplyModifiedProperties();
+            EditorGUILayout.LabelField(_sampleTextProperty.stringValue);
+
+            EditorGUILayout.PropertyField(_sceneIndexProperty);
+
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

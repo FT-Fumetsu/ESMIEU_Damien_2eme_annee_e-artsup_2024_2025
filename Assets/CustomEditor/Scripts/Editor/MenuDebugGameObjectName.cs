@@ -1,18 +1,18 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace DebugInMenu
+namespace MenuDebug
 {
-    public class DebugGameObjectNameInMenu : Editor
+    public class MenuDebugGameObjectName : Editor
     {
         [MenuItem("Tools/Log Console/Debug Game Object Name")]
-        static void DebugGameObjectName()
+        public static void DebugGameObjectName()
         {
-                Debug.Log(Selection.activeGameObject.name);
+            Debug.Log(Selection.activeGameObject.name);
         }
 
         [MenuItem("Tools/Log Console/Debug Game Object Name", true)]
-        static bool ValidateLogSelectedGameObjectName()
+        public static bool ValidateLogSelectedGameObjectName()
         {
             return Selection.activeGameObject != null;
         }
