@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace MenuDebug
+namespace DisplayConsole
 {
-    public class MenuDebugGameObjectName : Editor
+    public class DisplayConsoleGameObjectName : Editor
     {
         [MenuItem("Tools/Log Console/Debug Game Object Name")]
         public static void DebugGameObjectName()

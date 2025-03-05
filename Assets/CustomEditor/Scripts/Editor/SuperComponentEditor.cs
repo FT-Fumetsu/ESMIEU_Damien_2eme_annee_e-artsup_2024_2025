@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 namespace ComponentEditor
 {
@@ -24,6 +25,36 @@ namespace ComponentEditor
             EditorGUILayout.LabelField(_sampleTextProperty.stringValue);
 
             EditorGUILayout.PropertyField(_sceneIndexProperty);
+
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("+"))
+            {
+                if (_sceneIndexProperty.intValue == 1)
+                {
+                    return;
+                }
+                else
+                {
+                    _sceneIndexProperty.intValue += 1;
+                }                
+            }
+
+            if (GUILayout.Button("-"))
+            {
+                if (_sceneIndexProperty.intValue == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    _sceneIndexProperty.intValue -= 1;
+                }
+            }
+
+            EditorGUILayout.EndHorizontal();
+
+            //SceneManager.GetSceneByBuildIndex(_sceneIndexProperty.intValue);
 
             serializedObject.ApplyModifiedProperties();
         }

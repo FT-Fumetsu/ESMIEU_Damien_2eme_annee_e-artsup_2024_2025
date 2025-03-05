@@ -1,12 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace MenuDebug
+namespace DisplayConsole
 {
-    public class MenuDebugHelloWorld : Editor
+    public class DisplayConsoleHelloWorld : Editor
     {
         [MenuItem("Tools/Log Console/Debug Hello World")]
-        public static void DebugHelloWorld()
+        public static void DebugelloWorld()
         {
             Debug.Log("Hello World");
         }
