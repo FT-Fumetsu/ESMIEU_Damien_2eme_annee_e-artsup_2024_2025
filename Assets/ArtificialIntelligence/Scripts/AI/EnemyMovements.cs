@@ -7,7 +7,7 @@ namespace StateMachine
 
         private void Update()
         {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
+            transform.Translate(Vector2.down /** speed*/ * Time.deltaTime);
         }
 
         private void OnBecameInvisible()
