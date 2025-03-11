@@ -6,14 +6,20 @@ using PlayerStats;
 
 namespace Chests
 {
-    [System.Serializable]
+    [Serializable]
     public class Chest : MonoBehaviour
     {
         [SerializeField, Range(0, 10)] private int _obtenableCash;
         [SerializeField] private bool _isChestOpen;
-        [SerializeField] private string _guid = Guid.NewGuid().ToString();
+        [SerializeField] private string _id;
 
-        [SerializeField] private Player _player;    
+        [SerializeField] private Player _player;
+
+        private void Awake()
+        {
+            if (string.IsNullOrEmpty(_id))
+                _id = Guid.NewGuid().ToString();
+        }
 
         [ContextMenu("Open Or Close Chest")]
         public void OpenOrCloseChest()
