@@ -1,20 +1,23 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Structures;
 using UnityEngine;
 using Attribute;
 
-public class SuperComponent : MonoBehaviour
+namespace Component
 {
-    [SerializeField]
-    private Stats _stats;
+    public class SuperComponent : MonoBehaviour
+    {
+        [SerializeField]
+        private Stats _stats;
 
-    [SerializeField]
-    private string _sampleText;
+        [SerializeField]
+        private string _sampleText;
 
-    [SerializeField]
-    [Scene]
-    private string _sceneName;
+        [SerializeField]
+        [Scene]
+        private string _sceneName;
 
-    [SerializeField]
-    [Scene]
-    private int _sceneIndex;
+        [SerializeField]
+        [Scene]
+        private int _sceneIndex;
+    }
 }

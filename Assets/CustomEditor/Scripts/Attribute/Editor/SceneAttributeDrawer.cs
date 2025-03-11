@@ -2,7 +2,7 @@ using Attribute;
 using UnityEditor;
 using UnityEngine;
 
-namespace AttributeDrawer
+namespace Drawer
 {
     [CustomPropertyDrawer(typeof(SceneAttribute))]
     public class SceneAttributeDrawer : PropertyDrawer

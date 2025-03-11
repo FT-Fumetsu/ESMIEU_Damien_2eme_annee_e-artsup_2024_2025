@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using Component;
 
 namespace ComponentEditor
 {
@@ -10,7 +11,6 @@ namespace ComponentEditor
         SerializedProperty _sceneIndexProperty;
         SerializedProperty _sampleTextProperty;
 
-
         public void OnEnable()
         {
             _sampleTextProperty = serializedObject.FindProperty("_sampleText");
@@ -19,26 +19,13 @@ namespace ComponentEditor
 
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+
             serializedObject.Update();
-            EditorGUILayout.PropertyField(_sampleTextProperty);
 
             EditorGUILayout.LabelField(_sampleTextProperty.stringValue);
 
-            EditorGUILayout.PropertyField(_sceneIndexProperty);
-
             EditorGUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("+"))
-            {
-                if (_sceneIndexProperty.intValue == 1)
-                {
-                    return;
-                }
-                else
-                {
-                    _sceneIndexProperty.intValue += 1;
-                }                
-            }
 
             if (GUILayout.Button("-"))
             {
@@ -52,9 +39,19 @@ namespace ComponentEditor
                 }
             }
 
-            EditorGUILayout.EndHorizontal();
+            if (GUILayout.Button("+"))
+            {
+                if (_sceneIndexProperty.intValue == 1)
+                {
+                    return;
+                }
+                else
+                {
+                    _sceneIndexProperty.intValue += 1;
+                }                
+            }
 
-            //SceneManager.GetSceneByBuildIndex(_sceneIndexProperty.intValue);
+            EditorGUILayout.EndHorizontal();
 
             serializedObject.ApplyModifiedProperties();
         }
