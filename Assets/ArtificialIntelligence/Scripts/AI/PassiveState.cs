@@ -17,7 +17,7 @@ namespace StateMachine
         public IState Update(IStateMachineData stateMachineData)
         {
             var enemyStateMachineData = (EnemyStateMachineData)stateMachineData;
-            enemyStateMachineData.enemyTransform.Translate(Vector2.down * enemyStateMachineData.enemySpeed * Time.deltaTime);
+            enemyStateMachineData.enemyTransform.Translate(Vector2.down * enemyStateMachineData.enemyVerticalSpeed * Time.deltaTime);
             return null;
         }
     }

@@ -5,6 +5,8 @@ namespace StateMachine
     public class EnemyStateMachineData : IStateMachineData
     {
         public Transform enemyTransform;
-        public float enemySpeed;
+        public float enemyVerticalSpeed;
+        public float enemyHorizontalSpeed;
+        public Transform playerTransform;
     }
 }
