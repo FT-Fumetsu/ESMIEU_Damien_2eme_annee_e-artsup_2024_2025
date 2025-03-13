@@ -3,24 +3,33 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public class EnemyBehaviour : MonoBehaviour
+    public class ZigZagEnemyBehavior : MonoBehaviour
     {
-        [SerializeField] private float _speed = 3f;
-        [SerializeField] private float _detectionRadius = 2f;
+        //Tous les SerializeField
+        [SerializeField] private float _speed = 2f;
+        [SerializeField] private float _detectionRadius = 3f;
+        [SerializeField] private float _zigzagAmplitude = 2f;
+        [SerializeField] private float _zigzagFrequency = 2f;
+        [SerializeField] private float _timeElapsed = 0f;
+
+        //Tous les private
         private IState _currentState;
-        private EnemyStateMachineData _stateMachineData;
+        private ZigZagEnemyStateMachineData _stateMachineData;
 
         private void Start()
         {
-            _stateMachineData = new EnemyStateMachineData
+            _stateMachineData = new ZigZagEnemyStateMachineData
             {
                 EnemyTransform = transform,
                 PlayerTransform = FindObjectOfType<PlayerMovement>().transform,
                 Speed = _speed,
-                DetectionRadius = _detectionRadius
+                DetectionRadius = _detectionRadius,
+                ZigzagAmplitude = _zigzagAmplitude,
+                ZigzagFrequency = _zigzagFrequency,
+                TimeElapsed = _timeElapsed
             };
 
-            _currentState = new PassiveState();
+            _currentState = new ZigZagState();
             _currentState.Enter(_stateMachineData);
         }
 

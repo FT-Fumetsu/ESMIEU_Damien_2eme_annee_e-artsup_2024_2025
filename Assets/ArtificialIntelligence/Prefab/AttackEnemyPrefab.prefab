@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 7604139136464863732}
   - component: {fileID: 1521851047701320113}
   - component: {fileID: 2935634222952562375}
-  - component: {fileID: 7308830089556616338}
   m_Layer: 0
-  m_Name: EnemyPrefab
+  m_Name: AttackEnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,21 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040cb876ba7c7934c8dbfdca356310aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalSpeed: 3
-  _horizontalSpeed: 1.5
-  _visionRange: 5
-  _visionAngle: 90
-  _player: {fileID: 9151984702268260657, guid: 0c14f6e628a1d1c4188ee282a4aacf51, type: 3}
-  _canSeePlayer: 0
---- !u!114 &7308830089556616338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9182622676876063727}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b879535dccce614c8376aa43d187fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _speed: 3
+  _detectionRadius: 2

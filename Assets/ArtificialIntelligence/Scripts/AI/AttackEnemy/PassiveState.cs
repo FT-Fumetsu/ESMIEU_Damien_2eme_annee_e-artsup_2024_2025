@@ -8,7 +8,7 @@ namespace StateMachine
 
         public IState Update(IStateMachineData stateMachineData)
         {
-            var data = (EnemyStateMachineData)stateMachineData;
+            var data = (AttackEnemyStateMachineData)stateMachineData;
             float distance = Vector2.Distance(data.EnemyTransform.position, data.PlayerTransform.position);
 
             if (distance < data.DetectionRadius)

@@ -2,23 +2,20 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public class AttackState : IState
+    public class FleeState : IState
     {
         public void Enter(IStateMachineData stateMachineData) { }
 
         public IState Update(IStateMachineData stateMachineData)
         {
-            var data = (EnemyStateMachineData)stateMachineData;
+            var data = (ZigZagEnemyStateMachineData)stateMachineData;
             float distance = Vector2.Distance(data.EnemyTransform.position, data.PlayerTransform.position);
 
             if (distance > data.DetectionRadius)
-                return new PassiveState();
+                return new ZigZagState();
 
-            data.EnemyTransform.position = Vector2.MoveTowards(
-                data.EnemyTransform.position,
-                data.PlayerTransform.position,
-                data.Speed * Time.deltaTime
-            );
+            Vector3 fleeDirection = (data.EnemyTransform.position - data.PlayerTransform.position).normalized;
+            data.EnemyTransform.position += fleeDirection * data.Speed * Time.deltaTime;
             return null;
         }
 
