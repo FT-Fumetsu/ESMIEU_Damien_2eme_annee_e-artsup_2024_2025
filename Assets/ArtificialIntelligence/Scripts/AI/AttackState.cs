@@ -1,31 +1,27 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace StateMachine
 {
     public class AttackState : IState
     {
-        public void Enter(IStateMachineData stateMachineData)
-        {
-
-        }
-
-        public void Exit(IStateMachineData stateMachineData)
-        {
-
-        }
+        public void Enter(IStateMachineData stateMachineData) { }
 
         public IState Update(IStateMachineData stateMachineData)
         {
-            var enemyStateMachineData = (EnemyStateMachineData)stateMachineData;
-            
-            Vector2 moveDirection = Vector2.down * enemyStateMachineData.enemyVerticalSpeed * Time.deltaTime;
-            float directionX = Mathf.Sign(enemyStateMachineData.playerTransform.position.x - enemyStateMachineData.enemyTransform.position.x);
-            moveDirection.x = directionX * enemyStateMachineData.enemyHorizontalSpeed * Time.deltaTime;
+            var data = (EnemyStateMachineData)stateMachineData;
+            float distance = Vector2.Distance(data.EnemyTransform.position, data.PlayerTransform.position);
 
-            enemyStateMachineData.enemyTransform.Translate(moveDirection);
+            if (distance > data.DetectionRadius)
+                return new PassiveState();
 
+            data.EnemyTransform.position = Vector2.MoveTowards(
+                data.EnemyTransform.position,
+                data.PlayerTransform.position,
+                data.Speed * Time.deltaTime
+            );
             return null;
         }
+
+        public void Exit(IStateMachineData stateMachineData) { }
     }
 }
