@@ -2,10 +2,9 @@ Shader "Custom/Fireball"
 {
     Properties
     {
-        [MainTexture] _MainTexture("Main Texture", 2D) = "red" {}
-        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-        _SecondColor("Second Color", Color) = (1, 1, 1, 1)
-
+        [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
+        [MainColor] [HDR] _baseColor("Base Color", Color) = (1, 1, 1, 1)
+        [HDR] _secondColor("Second Color", Color) = (1, 1, 1, 1)
     }
 
     SubShader
@@ -33,23 +32,28 @@ Shader "Custom/Fireball"
             };
 
             CBUFFER_START(UnityPerMaterial)
-                half4 _MainTexture_ST;
-                half4 _BaseColor;
-                half4 _SecondColor;
+                half4 _baseColor;
+                half4 _secondColor;
             CBUFFER_END
+
+            TEXTURE2D(_mainTexture);
+            SAMPLER(sampler_mainTexture);
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.uv = IN.uv;
-                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
+                    OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                    OUT.uv = IN.uv;
+                //OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                return lerp(_BaseColor, _SecondColor, _MainTexture_ST);
+                half4 textureColor = SAMPLE_TEXTURE2D(_mainTexture, sampler_mainTexture, IN.uv);
+
+                //return textureColor * _baseColor;
+                return lerp(_baseColor, _secondColor, textureColor);
             }
             ENDHLSL
         }

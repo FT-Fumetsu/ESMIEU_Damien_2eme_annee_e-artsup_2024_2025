@@ -45,8 +45,7 @@ Shader "Custom/Fireball"
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-                    float lerpFactor = 0.5 + 0.5 * sin(_Time.y * 2);
-                    OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz * lerp(1, 2, lerpFactor));
+                    OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz * _offset.xyz);
                     OUT.uv = IN.uv;
                 //OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
                 return OUT;
