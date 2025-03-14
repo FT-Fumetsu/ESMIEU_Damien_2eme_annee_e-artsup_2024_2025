@@ -1,58 +1,60 @@
-Shader "Custom/PixelSphere"
+    Shader "Custom/PixelSphereShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
+        [MainColor] _BuffColor("Buff Color", Color) = (1, 1, 1, 1)
+        _BuffPower("Buff Power", Float) = 0.5
     }
+
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
 
         Pass
         {
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
-            #include "UnityCG.cginc"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-            struct appdata
+            struct Attributes
             {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float4 positionOS   : POSITION;
+                float2 uv           : TEXCOORD0;
             };
 
-            struct v2f
+            struct Varyings
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
+                float4 positionHCS  : SV_POSITION;
+                float2 uv           : TEXCOORD0;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
+            CBUFFER_START(UnityPerMaterial)
+                half4 _BuffColor;
+                float _BuffPower;
+            CBUFFER_END
 
-            v2f vert (appdata v)
+            TEXTURE2D(_mainTexture);
+            SAMPLER(sampler_mainTexture);
+
+
+            Varyings vert(Attributes IN)
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
-                return o;
+                Varyings OUT;
+                    OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                    OUT.uv = IN.uv;
+                return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag() : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                half4 InvertTextureColor = 1 - TextureColor;
+                half4 TextureBuffedColor = IN.color * _BuffColor * _BuffPower
+                return lerp(TextureBuffedColor, InvertTextureColor, _BuffPower)
             }
-            ENDCG
+            ENDHLSL
         }
     }
 }

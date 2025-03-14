@@ -1,10 +1,11 @@
-Shader "Custom/Fireball"
+Shader "Custom/BubblegumShader"
 {
     Properties
     {
-        [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
-        [MainColor] [HDR] _baseColor("Base Color", Color) = (1, 1, 1, 1)
-        [HDR] _secondColor("Second Color", Color) = (1, 1, 1, 1)
+        [MainColor] [HDR] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
+        [HDR] _FlashColor("Flash Color", Color) = (1, 1, 1, 1)
+        //_FlashFrequency ne marche pas, ça me fait une erreur quand je remplace le 2 dans le sin par cette property
+        _FlashFrequency("Flash Frequency", Integer) = 2
         _offset("Offset", Vector) = (1, 1, 1, 1)
 
     }
@@ -34,13 +35,10 @@ Shader "Custom/Fireball"
             };
 
             CBUFFER_START(UnityPerMaterial)
-                half4 _baseColor;
-                half4 _secondColor;
-                float4 _offset;
+                half4 _BaseColor;
+                half4 _FlashColor;
+                float4 _FlashFrequency;
             CBUFFER_END
-
-            TEXTURE2D(_mainTexture);
-            SAMPLER(sampler_mainTexture);
 
             Varyings vert(Attributes IN)
             {
@@ -48,16 +46,13 @@ Shader "Custom/Fireball"
                     float lerpFactor = 0.5 + 0.5 * sin(_Time.y * 2);
                     OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz * lerp(1, 2, lerpFactor));
                     OUT.uv = IN.uv;
-                //OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                half4 textureColor = SAMPLE_TEXTURE2D(_mainTexture, sampler_mainTexture, IN.uv);
-
-                //return textureColor * _baseColor;
-                return lerp(_baseColor, _secondColor, textureColor);
+                float lerpColor = 0.5 + 0.5 * sin(_Time.y * 2);
+                return lerp(_BaseColor, _FlashColor, lerpColor);
             }
             ENDHLSL
         }

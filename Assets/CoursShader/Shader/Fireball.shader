@@ -1,4 +1,4 @@
-Shader "Custom/Fireball"
+    Shader "Custom/Fireball"
 {
     Properties
     {
@@ -44,7 +44,6 @@ Shader "Custom/Fireball"
                 Varyings OUT;
                     OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                     OUT.uv = IN.uv;
-                //OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
                 return OUT;
             }
 
@@ -52,7 +51,6 @@ Shader "Custom/Fireball"
             {
                 half4 textureColor = SAMPLE_TEXTURE2D(_mainTexture, sampler_mainTexture, IN.uv);
 
-                //return textureColor * _baseColor;
                 return lerp(_baseColor, _secondColor, textureColor);
             }
             ENDHLSL
