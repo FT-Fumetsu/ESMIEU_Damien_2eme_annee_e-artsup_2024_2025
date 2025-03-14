@@ -122,6 +122,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &184598663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184598665}
+  - component: {fileID: 184598664}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &184598664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184598663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c0c6f30a65d694b888779df732b78c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &184598665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184598663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.063237, y: 0.50155437, z: 0.95923615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257611993
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 10
   _isChestOpen: 1
+  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &257611995
 BoxCollider:
@@ -277,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 10
   _isChestOpen: 1
+  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &322311660
 BoxCollider:
@@ -653,6 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 0
   _isChestOpen: 1
+  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &433855237
 BoxCollider:
@@ -1336,6 +1383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 10
   _isChestOpen: 1
+  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &1392836274
 BoxCollider:
@@ -1761,6 +1809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 0
   _isChestOpen: 1
+  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &1834588520
 BoxCollider:
@@ -1863,3 +1912,4 @@ SceneRoots:
   - {fileID: 1392836277}
   - {fileID: 1710627429}
   - {fileID: 1766387762}
+  - {fileID: 184598665}
