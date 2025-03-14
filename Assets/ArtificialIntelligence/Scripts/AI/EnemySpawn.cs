@@ -4,12 +4,12 @@ namespace Spawner
 {
     public class EnemySpawn : MonoBehaviour
     {
-        [SerializeField] private GameObject enemyPrefab;
-        [SerializeField] private float spawnInterval = 2f;
+        [SerializeField] private GameObject _enemyPrefab;
+        [SerializeField] private float _spawnInterval = 2f;
 
         public void Start()
         {
-            InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
+            InvokeRepeating(nameof(SpawnEnemy), 0f, _spawnInterval);
         }
 
         public void SpawnEnemy()
@@ -19,7 +19,7 @@ namespace Spawner
             float spawnY = Camera.main.orthographicSize + 1f;
 
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
         }
     }
 }
