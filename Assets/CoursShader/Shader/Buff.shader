@@ -37,7 +37,7 @@
             SAMPLER(sampler_MainTexture);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _mainTexture_ST;
+                float4 _MainTexture_ST;
                 half4 _BuffColor;
                 float _BuffPower;
             CBUFFER_END
@@ -46,7 +46,7 @@
             {
                 Varyings OUT;
                     OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                    OUT.uv = TRANSFORM_TEX(IN.uv, _mainTexture);
+                    OUT.uv = TRANSFORM_TEX(IN.uv, _MainTexture);
                     OUT.color = IN.color;
                 return OUT;
             }
