@@ -34,7 +34,7 @@ namespace PlayerStats
             };
         }
 
-        public void Deserialize(PlayerDTO dto)
+        public void Deserialized(PlayerDTO dto)
         {
             this._health = dto.Health;
             this._cash = dto.Cash;
