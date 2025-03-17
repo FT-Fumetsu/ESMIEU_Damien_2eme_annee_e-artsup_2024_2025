@@ -2,10 +2,9 @@
 {
     Properties
     {
-        [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
+        [MainTexture] _MainTexture("Main Texture", 2D) = "red" {}
         _BuffColor("Buff Color", Color) = (1, 1, 1, 1)
-        _TextureColor("Texture Color", Color) = (1, 1, 1, 1)
-        _BuffPower("Buff Power", Float) = 0.5
+        _BuffPower("Buff Power", Range(0.0, 1.0)) = 1
     }
 
     SubShader
@@ -24,36 +23,43 @@
             {
                 float4 positionOS   : POSITION;
                 float2 uv           : TEXCOORD0;
+                half4 color         : COLOR;
             };
 
             struct Varyings
             {
                 float4 positionHCS  : SV_POSITION;
                 float2 uv           : TEXCOORD0;
+                half4 color        : COLOR;
             };
 
+            TEXTURE2D(_MainTexture);
+            SAMPLER(sampler_MainTexture);
+
             CBUFFER_START(UnityPerMaterial)
+                float4 _mainTexture_ST;
                 half4 _BuffColor;
                 float _BuffPower;
             CBUFFER_END
-
-            TEXTURE2D(_mainTexture);
-            SAMPLER(sampler_mainTexture);
-
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
                     OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                    OUT.uv = IN.uv;
+                    OUT.uv = TRANSFORM_TEX(IN.uv, _mainTexture);
+                    OUT.color = IN.color;
                 return OUT;
             }
 
-            half4 frag() : SV_Target
+            half4 frag(Varyings IN) : SV_Target
             {
-                half4 InvertTextureColor = 1 - TextureColor;
-                half4 TextureBuffedColor = IN.color * _BuffColor * _BuffPower
-                return lerp(TextureBuffedColor, InvertTextureColor, _BuffPower)
+                half4 textureColor = SAMPLE_TEXTURE2D(_MainTexture, sampler_MainTexture, IN.uv);
+                half4 invertTextureColor = 1 - textureColor;
+                half4 textureBuffedColor = IN.color + (_BuffColor - IN.color) * _BuffPower;
+
+                textureColor = lerp(textureColor, invertTextureColor, _BuffPower) * textureBuffedColor;
+
+                return textureColor;
             }
             ENDHLSL
         }
