@@ -14,15 +14,12 @@ namespace Chests
 
         private string _id;
 
+        public string Id { get { return _id; } }
+
         private void Awake()
         {
             if (string.IsNullOrEmpty(_id))
                 _id = Guid.NewGuid().ToString();
-        }
-
-        public string GetID()
-        {
-            return _id;
         }
 
         public ChestDTO Serialized()

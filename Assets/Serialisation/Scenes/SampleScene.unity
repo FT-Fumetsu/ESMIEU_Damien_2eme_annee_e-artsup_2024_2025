@@ -198,9 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d29bfc18dfa4a4ab5e2d250d14047a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obtenableCash: 10
+  _obtenableCash: 3
   _isChestOpen: 1
-  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &257611995
 BoxCollider:
@@ -320,9 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d29bfc18dfa4a4ab5e2d250d14047a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obtenableCash: 10
+  _obtenableCash: 2
   _isChestOpen: 1
-  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &322311660
 BoxCollider:
@@ -699,7 +697,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obtenableCash: 0
   _isChestOpen: 1
-  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &433855237
 BoxCollider:
@@ -990,9 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d29bfc18dfa4a4ab5e2d250d14047a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obtenableCash: 10
+  _obtenableCash: 4
   _isChestOpen: 1
-  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &1392836274
 BoxCollider:
@@ -1180,9 +1176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d29bfc18dfa4a4ab5e2d250d14047a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obtenableCash: 0
+  _obtenableCash: 1
   _isChestOpen: 1
-  _id: 
   _player: {fileID: 1083806962}
 --- !u!65 &1834588520
 BoxCollider:

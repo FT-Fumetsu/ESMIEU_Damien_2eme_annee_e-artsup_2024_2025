@@ -76,7 +76,7 @@ namespace Serialisation
                     //Dans le tableau chests, cherche le premier chest qui correspond à la condition
                     //"c => c.GetID() == chestDTO.ID". Ce qui veut dire: "un coffre dont l'id (c.GetID())
                     //est égal à l'id dans le ChestDTO (== chestDTO.ID).
-                    Chest chest = Array.Find(chests, c => c.GetID() == chestDTO.ID);
+                    Chest chest = Array.Find(chests, c => c.Id == chestDTO.ID);
                     if (chest != null)
                     {
                         chest.Deserialized(chestDTO);
