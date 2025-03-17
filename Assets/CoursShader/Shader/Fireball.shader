@@ -5,6 +5,8 @@
         [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
         [MainColor] [HDR] _baseColor("Base Color", Color) = (1, 1, 1, 1)
         [HDR] _secondColor("Second Color", Color) = (1, 1, 1, 1)
+        _fresnelColor ("Fresnel Color", Color) = (1, 1, 1, 1)
+        _fresnelPower ("Fresnel Power", Range(0, 10)) = 0
     }
 
     SubShader
@@ -34,6 +36,7 @@
             CBUFFER_START(UnityPerMaterial)
                 half4 _baseColor;
                 half4 _secondColor;
+                int _fresnelPower;
             CBUFFER_END
 
             TEXTURE2D(_mainTexture);

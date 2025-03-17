@@ -3,7 +3,8 @@
     Properties
     {
         [MainTexture] _mainTexture("Main Texture", 2D) = "red" {}
-        [MainColor] _BuffColor("Buff Color", Color) = (1, 1, 1, 1)
+        _BuffColor("Buff Color", Color) = (1, 1, 1, 1)
+        _TextureColor("Texture Color", Color) = (1, 1, 1, 1)
         _BuffPower("Buff Power", Float) = 0.5
     }
 
