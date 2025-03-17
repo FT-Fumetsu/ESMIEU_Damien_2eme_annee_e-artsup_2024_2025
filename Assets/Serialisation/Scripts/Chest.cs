@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using PlayerStats;
+using Serialisation;
 
 namespace Chests
 {
     [Serializable]
-    public class Chest : MonoBehaviour
+    public class Chest : MonoBehaviour, ISerialize<ChestDTO>
     {
         [SerializeField, Range(0, 10)] private int _obtenableCash;
         [SerializeField] private bool _isChestOpen;
@@ -17,6 +18,16 @@ namespace Chests
         {
             if (string.IsNullOrEmpty(_id))
                 _id = Guid.NewGuid().ToString();
+        }
+
+        public ChestDTO Serialized()
+        {
+            return new ChestDTO
+            {
+                ObtenableCash = this._obtenableCash,
+                IsChestOpen = this._isChestOpen,
+                ID = this._id
+            };
         }
 
         [ContextMenu("Open Or Close Chest")]
@@ -63,6 +74,13 @@ namespace Chests
             {
                 Debug.Log("Chest is closed, can't refill the cash");
             }
+        }
+
+        public void Deserialize(ChestDTO dto)
+        {
+            this._obtenableCash = dto.ObtenableCash;
+            this._isChestOpen = dto.IsChestOpen;
+            this._id = dto.ID;
         }
     }
 }

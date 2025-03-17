@@ -3,65 +3,71 @@ using System;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using Chests;
 
-public class SaveSystem : MonoBehaviour
+namespace Serialisation
 {
-    private static SaveSystem _instance;
-    public static SaveSystem Instance => _instance;
-
-    public static string _filePath;
-
-    private void Awake()
+    public class SaveSystem : MonoBehaviour
     {
-        _filePath = $"{Application.persistentDataPath}/SaveData.json";
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
+        private static SaveSystem _instance;
+        public static SaveSystem Instance => _instance;
 
-    [ContextMenu("Save")]
-    public void Save()
-    {
-        SaveData data = new()
-        {
-            PlayerDTO = FindFirstObjectByType<Player>().Serialized()
-        };
+        public static string _filePath;
 
-        try
+        private void Awake()
         {
-            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-            using FileStream stream = new(_filePath, FileMode.Create);
-            using StreamWriter writer = new (stream);
-            writer.Write(json);
-            Debug.Log("Save Succed");
+            _filePath = $"{Application.persistentDataPath}/SaveData.json";
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
         }
-        catch (Exception ex)
+
+        [ContextMenu("Save")]
+        public void Save()
         {
-            Debug.LogError($"JSON Serialisation Error: {ex.Message}");
+            SaveData data = new()
+            {
+                PlayerDTO = FindFirstObjectByType<Player>().Serialized(),
+                ChestDTO = FindAnyObjectByType<Chest>().Serialized()
+            };
+
+            try
+            {
+                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                using FileStream stream = new(_filePath, FileMode.Create);
+                using StreamWriter writer = new(stream);
+                writer.Write(json);
+                Debug.Log($"Save Succed : {_filePath}");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"JSON Serialisation Error: {ex.Message}");
+            }
         }
-    }
 
-    [ContextMenu("Load")]
-    public void Load()
-    {
-        try
+        [ContextMenu("Load")]
+        public void Load()
         {
-            using StreamReader reader = new (_filePath);
-            string json = reader.ReadToEnd();
+            try
+            {
+                using StreamReader reader = new(_filePath);
+                string json = reader.ReadToEnd();
 
-            SaveData data = JsonConvert.DeserializeObject<SaveData>(json);
-            FindFirstObjectByType<Player>().Deserialize(data.PlayerDTO);
+                SaveData data = JsonConvert.DeserializeObject<SaveData>(json);
+                FindFirstObjectByType<Player>().Deserialize(data.PlayerDTO);
+                FindAnyObjectByType<Chest>().Deserialize(data.ChestDTO);
 
-            Debug.Log("Load Succed");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"JSON Deserialisation Error: {ex.Message}");
+                Debug.Log($"Load Succed : {_filePath}");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"JSON Deserialisation Error: {ex.Message}");
+            }
         }
     }
 }

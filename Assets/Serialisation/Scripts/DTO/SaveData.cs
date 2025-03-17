@@ -1,5 +1,9 @@
-[System.Serializable]
-public class SaveData
+namespace Serialisation
 {
-    public PlayerDTO PlayerDTO;
+    [System.Serializable]
+    public class SaveData
+    {
+        public PlayerDTO PlayerDTO;
+        public ChestDTO ChestDTO;
+    }
 }

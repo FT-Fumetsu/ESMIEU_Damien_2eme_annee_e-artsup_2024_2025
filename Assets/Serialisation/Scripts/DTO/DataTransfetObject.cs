@@ -1,6 +1,8 @@
-[System.Serializable]
-
-public abstract class DataTransfetObject 
+namespace Serialisation
 {
-    
+    [System.Serializable]
+    public abstract class DataTransfetObject
+    {
+
+    }
 }

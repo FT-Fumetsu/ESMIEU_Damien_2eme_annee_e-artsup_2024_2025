@@ -1,5 +1,8 @@
-public class PlayerDTO : DataTransfetObject
+namespace Serialisation
 {
-    public int Health;
-    public int Cash;
+    public class PlayerDTO : DataTransfetObject
+    {
+        public int Health;
+        public int Cash;
+    }
 }
