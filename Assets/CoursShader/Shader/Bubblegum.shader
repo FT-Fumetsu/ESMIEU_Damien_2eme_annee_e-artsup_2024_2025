@@ -5,9 +5,7 @@ Shader "Custom/BubblegumShader"
         [MainColor] [HDR] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         [HDR] _FlashColor("Flash Color", Color) = (1, 1, 1, 1)
         //_FlashFrequency ne marche pas, ça me fait une erreur quand je remplace le 2 dans le sin par cette property
-        _FlashFrequency("Flash Frequency", Integer) = 2
-        _offset("Offset", Vector) = (1, 1, 1, 1)
-
+        _FlashFrequency("Flash Frequency", Int) = 2
     }
 
     SubShader
@@ -37,13 +35,13 @@ Shader "Custom/BubblegumShader"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor;
                 half4 _FlashColor;
-                float4 _FlashFrequency;
+                float _FlashFrequency;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-                    float lerpFactor = 0.5 + 0.5 * sin(_Time.y * 2);
+                    float lerpFactor = 0.5 + 0.5 * sin(_Time.y * _FlashFrequency);
                     OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz * lerp(1, 2, lerpFactor));
                     OUT.uv = IN.uv;
                 return OUT;
@@ -51,7 +49,7 @@ Shader "Custom/BubblegumShader"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                float lerpColor = 0.5 + 0.5 * sin(_Time.y * 2);
+                float lerpColor = 0.5 + 0.5 * sin(_Time.y * _FlashFrequency);
                 return lerp(_BaseColor, _FlashColor, lerpColor);
             }
             ENDHLSL
