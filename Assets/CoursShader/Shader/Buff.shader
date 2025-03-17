@@ -1,4 +1,4 @@
-    Shader "Custom/PixelSphereShader"
+    Shader "Custom/BuffShader"
 {
     Properties
     {
