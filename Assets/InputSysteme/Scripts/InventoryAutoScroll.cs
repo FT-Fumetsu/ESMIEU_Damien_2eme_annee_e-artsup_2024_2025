@@ -11,6 +11,11 @@ namespace Menu
 
         private void Update()
         {
+            AutoScroll();
+        }
+
+        private void AutoScroll()
+        {
             for (int i = 0; i < _inventoryContentList.childCount; i++)
             {
                 GameObject item = _inventoryContentList.GetChild(i).gameObject;

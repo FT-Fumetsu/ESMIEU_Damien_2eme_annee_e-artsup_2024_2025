@@ -6,14 +6,17 @@ namespace Player
     public class PlayerShoot : MonoBehaviour
     {
         [SerializeField] private float _fireRate = 0.5f;
-        [SerializeField] private float _chrono = 0;
         [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _bulletSpawnPosition;
-        [SerializeField] private PlayerMovement _player;
+
+        private Transform _player;
+
+        private float _chrono = 0;
 
         private void Update()
         {
-            _bulletSpawnPosition = _player.transform;
+            _player = GetComponent<Transform>();
+            _bulletSpawnPosition = _player;
             _chrono += Time.deltaTime;
         }
 
