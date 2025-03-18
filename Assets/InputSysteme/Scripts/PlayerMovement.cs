@@ -10,13 +10,13 @@ namespace Player
         [SerializeField] private float _playerSpeed = 5f;
 
         private Vector2 _moveInput;
-        private Rigidbody2D _rigidbody;
+        private Rigidbody2D _rigidbody2D;
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        private void Update()
+        private void FixedUpdate()
         {
             PlayerVelocity();
         }
@@ -29,7 +29,7 @@ namespace Player
 
         private void PlayerVelocity()
         {
-            _rigidbody.velocity = _moveInput * _playerSpeed;
+            _rigidbody2D.velocity = _moveInput * _playerSpeed;
         }
     }
 }

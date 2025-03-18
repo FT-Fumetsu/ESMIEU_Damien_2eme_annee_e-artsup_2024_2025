@@ -23,10 +23,7 @@ namespace Menu
 
         private void Start()
         {
-            _mobileButtonUIGameObject.SetActive(true);
-            _pauseMenuGameObject.SetActive(false);
-            _optionsMenuGameObject.SetActive(false);
-            _inventoryMenuGameObject.SetActive(false);
+            SetMenuAtStart();
         }
 
         public void OpenMenu(InputAction.CallbackContext context)
@@ -109,6 +106,14 @@ namespace Menu
 
             //set a new selected object
             EventSystem.current.SetSelectedGameObject(_inventoryClosedButtonGameObject);
+        }
+
+        private void SetMenuAtStart()
+        {
+            _mobileButtonUIGameObject.SetActive(true);
+            _pauseMenuGameObject.SetActive(false);
+            _optionsMenuGameObject.SetActive(false);
+            _inventoryMenuGameObject.SetActive(false);
         }
     }
 }

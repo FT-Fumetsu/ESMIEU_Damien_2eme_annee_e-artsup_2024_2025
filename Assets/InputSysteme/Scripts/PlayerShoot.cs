@@ -10,7 +10,6 @@ namespace Player
         [SerializeField] private Transform _bulletSpawnPosition;
 
         private Transform _player;
-
         private float _chrono = 0;
 
         private void Update()
