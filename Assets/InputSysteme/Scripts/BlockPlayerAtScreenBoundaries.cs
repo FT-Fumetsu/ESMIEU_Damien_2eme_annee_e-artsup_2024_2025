@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Boundaries
 {
-    public class ScreenBoundaries : MonoBehaviour
+    public class BlockPlayerAtScreenBoundaries : MonoBehaviour
     {
         private void FixedUpdate()
         {
-            ClampPosition();
+            BlockPlayer();
         }
 
-        private void ClampPosition()
+        private void BlockPlayer()
         {
             Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
             pos.x = Mathf.Clamp01(pos.x);

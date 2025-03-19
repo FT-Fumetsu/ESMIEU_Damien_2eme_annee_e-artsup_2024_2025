@@ -7,19 +7,25 @@ namespace Input
     {
         [SerializeField] private PlayerInput _playerInput;
 
+        private string _gameActionMap = "Game";
+        private string _uiActionMap = "UI";
         public void SwitchOnUIActionMap(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                _playerInput.actions.FindActionMap("UI").Enable();
-                _playerInput.actions.FindActionMap("Game").Disable();
+                SwitchActionMaps(_uiActionMap, _gameActionMap);
             }
         }
 
         public void SwitchOnPlayerActionMap()
         {
-            _playerInput.actions.FindActionMap("UI").Disable();
-            _playerInput.actions.FindActionMap("Game").Enable();
+            SwitchActionMaps(_gameActionMap, _uiActionMap);
+        }
+
+        private void SwitchActionMaps(string nextActionMapName, string oldActionMapName)
+        {
+            _playerInput.actions.FindActionMap(nextActionMapName).Enable();
+            _playerInput.actions.FindActionMap(oldActionMapName).Disable();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Bullet
 
         private void FixedUpdate()
         {
-            UpdateBulletSpeed();
+            AddBulletSpeed();
         }
         private void OnBecameInvisible()
         {
@@ -23,7 +23,7 @@ namespace Bullet
             Destroy(gameObject);
         }
 
-        public void UpdateBulletSpeed()
+        public void AddBulletSpeed()
         {
             _rigidbody2D.velocity = new Vector2(0, _bulletSpeed);
         }
