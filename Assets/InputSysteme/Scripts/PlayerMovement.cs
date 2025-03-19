@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,18 +18,18 @@ namespace Player
 
         private void FixedUpdate()
         {
-            UpdatePlayerVelocity();
+            Movement();
         }
 
-        public void Move(InputAction.CallbackContext context)
+        private void Movement()
+        {
+            _rigidbody2D.velocity = _moveInput * _playerSpeed;
+        }
+
+        public void SetTargetMovement(InputAction.CallbackContext context)
         {
             _moveInput = context.ReadValue<Vector2>();
             Debug.Log(_moveInput.ToString());
-        }
-
-        private void UpdatePlayerVelocity()
-        {
-            _rigidbody2D.velocity = _moveInput * _playerSpeed;
         }
     }
 }

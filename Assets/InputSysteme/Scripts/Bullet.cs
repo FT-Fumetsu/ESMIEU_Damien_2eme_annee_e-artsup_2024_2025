@@ -6,6 +6,7 @@ namespace Bullet
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private float _bulletSpeed = 5f;
+
         private Rigidbody2D _rigidbody2D;
 
         private void Awake()
@@ -15,15 +16,16 @@ namespace Bullet
 
         private void FixedUpdate()
         {
-            AddBulletSpeed();
+            BulletMovement();
         }
+        
         private void OnBecameInvisible()
         {
             Debug.Log("Invisible");
             Destroy(gameObject);
         }
 
-        public void AddBulletSpeed()
+        private void BulletMovement()
         {
             _rigidbody2D.velocity = new Vector2(0, _bulletSpeed);
         }

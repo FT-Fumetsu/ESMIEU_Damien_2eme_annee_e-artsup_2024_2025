@@ -7,13 +7,11 @@ namespace Player
     {
         [SerializeField] private float _fireRate = 0.5f;
         [SerializeField] private GameObject _bullet;
-        [SerializeField] private Transform _bulletSpawnPosition;
 
         private float _chrono = 0;
 
         private void Update()
         {
-            _bulletSpawnPosition = transform;
             _chrono += Time.deltaTime;
         }
 
@@ -23,7 +21,7 @@ namespace Player
             {
                 if (context.started)
                 {
-                    Instantiate(_bullet, _bulletSpawnPosition);
+                    Instantiate(_bullet, transform);
                     _chrono = 0f;
                 }
             }
