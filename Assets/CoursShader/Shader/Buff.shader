@@ -57,7 +57,7 @@
                 half4 invertTextureColor = 1 - textureColor;
                 half4 textureBuffedColor = IN.color + (_BuffColor - IN.color) * _BuffPower;
 
-                textureColor = lerp(textureColor, invertTextureColor, _BuffPower) * textureBuffedColor;
+                textureColor = lerp(textureColor, invertTextureColor, _BuffPower) + textureBuffedColor;
 
                 return textureColor;
             }

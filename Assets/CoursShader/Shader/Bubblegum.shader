@@ -4,7 +4,6 @@ Shader "Custom/BubblegumShader"
     {
         [MainColor] [HDR] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         [HDR] _FlashColor("Flash Color", Color) = (1, 1, 1, 1)
-        //_FlashFrequency ne marche pas, ça me fait une erreur quand je remplace le 2 dans le sin par cette property
         _FlashFrequency("Flash Frequency", Int) = 2
     }
 
@@ -35,7 +34,7 @@ Shader "Custom/BubblegumShader"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor;
                 half4 _FlashColor;
-                float _FlashFrequency;
+                int _FlashFrequency;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
