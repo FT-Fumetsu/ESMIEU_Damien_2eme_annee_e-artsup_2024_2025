@@ -9,6 +9,7 @@ namespace Input
 
         private string _gameActionMap = "Game";
         private string _uiActionMap = "UI";
+
         public void SwitchOnUIActionMap(InputAction.CallbackContext context)
         {
             if (context.started)
