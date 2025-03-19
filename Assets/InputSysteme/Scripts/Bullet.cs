@@ -6,11 +6,16 @@ namespace Bullet
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private float _bulletSpeed = 5f;
-        [SerializeField] private Rigidbody2D _rigidbody2D;
+        private Rigidbody2D _rigidbody2D;
+
+        private void Awake()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
 
         private void FixedUpdate()
         {
-            BulletSpeed();
+            UpdateBulletSpeed();
         }
         private void OnBecameInvisible()
         {
@@ -18,7 +23,7 @@ namespace Bullet
             Destroy(gameObject);
         }
 
-        public void BulletSpeed()
+        public void UpdateBulletSpeed()
         {
             _rigidbody2D.velocity = new Vector2(0, _bulletSpeed);
         }

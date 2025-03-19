@@ -16,9 +16,10 @@ namespace Player
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
+
         private void FixedUpdate()
         {
-            PlayerVelocity();
+            UpdatePlayerVelocity();
         }
 
         public void Move(InputAction.CallbackContext context)
@@ -27,7 +28,7 @@ namespace Player
             Debug.Log(_moveInput.ToString());
         }
 
-        private void PlayerVelocity()
+        private void UpdatePlayerVelocity()
         {
             _rigidbody2D.velocity = _moveInput * _playerSpeed;
         }

@@ -9,21 +9,19 @@ namespace Player
         [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _bulletSpawnPosition;
 
-        private Transform _player;
         private float _chrono = 0;
 
         private void Update()
         {
-            _player = GetComponent<Transform>();
-            _bulletSpawnPosition = _player;
+            _bulletSpawnPosition = transform;
             _chrono += Time.deltaTime;
         }
 
         public void Shoot(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (_chrono >= _fireRate)
             {
-                if (_chrono >= _fireRate)
+                if (context.started)
                 {
                     Instantiate(_bullet, _bulletSpawnPosition);
                     _chrono = 0f;
