@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 2007666173}
   - component: {fileID: 2007666172}
   m_Layer: 0
-  m_Name: PixelSphere
+  m_Name: Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
