@@ -1,0 +1,8 @@
+namespace Serialisation
+{
+    public interface ISerialize<T> where T : DataTransfetObject 
+    {
+        T Serialized();
+        void Deserialized(T dto);
+    }
+}
