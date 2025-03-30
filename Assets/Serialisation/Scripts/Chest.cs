@@ -11,16 +11,9 @@ namespace Chests
         [SerializeField, Range(0, 10)] private int _obtenableCash;
         [SerializeField] private bool _isChestOpen;
         [SerializeField] private Player _player;
-
-        private string _id;
+        [SerializeField] private string _id = Guid.NewGuid().ToString();
 
         public string Id { get { return _id; } }
-
-        private void Awake()
-        {
-            if (string.IsNullOrEmpty(_id))
-                _id = Guid.NewGuid().ToString();
-        }
 
         public ChestDTO Serialized()
         {
@@ -39,8 +32,8 @@ namespace Chests
             this._id = dto.ID;
         }
 
-        [ContextMenu("Open Or Close Chest")]
-        public void OpenOrCloseChest()
+        [ContextMenu("Toggle Chest")]
+        public void ToggleChest()
         {
             if (_isChestOpen)
             {
@@ -49,11 +42,9 @@ namespace Chests
             }
             else
             {
-
                 _isChestOpen = true;
                 Debug.Log("Opened Chest");
             }
-
         }
 
         [ContextMenu("Give Cash")]
@@ -83,6 +74,12 @@ namespace Chests
             {
                 Debug.Log("Chest is closed, can't refill the cash");
             }
+        }
+
+        [ContextMenu("Assign New ID")]
+        public void NewGuid()
+        {
+            _id = Guid.NewGuid().ToString();
         }
     }
 }

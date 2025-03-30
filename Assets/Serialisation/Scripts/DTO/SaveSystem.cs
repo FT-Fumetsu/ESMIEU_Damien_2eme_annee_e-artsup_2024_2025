@@ -34,13 +34,13 @@ namespace Serialisation
             SaveData data = new()
             {
                 PlayerDTO = FindFirstObjectByType<Player>().Serialized(),
-                ChestDTO = new List<ChestDTO>()
+                ChestListDTO = new List<ChestDTO>()
             };
 
             Chest[] chests = FindObjectsOfType<Chest>();
             foreach (Chest chest in chests)
             {
-                data.ChestDTO.Add(chest.Serialized());
+                data.ChestListDTO.Add(chest.Serialized());
             }
 
             try
@@ -71,7 +71,7 @@ namespace Serialisation
                 Chest[] chests = FindObjectsOfType<Chest>();
 
                 //Pour tous les ChestDTO dans la liste de ChestDTO dans SaveData
-                foreach (ChestDTO chestDTO in data.ChestDTO)
+                foreach (ChestDTO chestDTO in data.ChestListDTO)
                 {
                     //Dans le tableau chests, cherche le premier chest qui correspond à la condition
                     //"c => c.GetID() == chestDTO.ID". Ce qui veut dire: "un coffre dont l'id (c.GetID())

@@ -201,6 +201,7 @@ MonoBehaviour:
   _obtenableCash: 3
   _isChestOpen: 1
   _player: {fileID: 1083806962}
+  _id: e73c331d-a9fa-4063-90c2-f47cc300ca25
 --- !u!65 &257611995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +323,7 @@ MonoBehaviour:
   _obtenableCash: 2
   _isChestOpen: 1
   _player: {fileID: 1083806962}
+  _id: 709ff26f-be9c-4ba8-b655-96e654832301
 --- !u!65 &322311660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -698,6 +700,7 @@ MonoBehaviour:
   _obtenableCash: 0
   _isChestOpen: 1
   _player: {fileID: 1083806962}
+  _id: b752e809-fbe4-4ebe-a4d4-47094b166f94
 --- !u!65 &433855237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -990,6 +993,7 @@ MonoBehaviour:
   _obtenableCash: 4
   _isChestOpen: 1
   _player: {fileID: 1083806962}
+  _id: 78198397-4439-4f22-9062-1234a1fbf689
 --- !u!65 &1392836274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1179,6 +1183,7 @@ MonoBehaviour:
   _obtenableCash: 1
   _isChestOpen: 1
   _player: {fileID: 1083806962}
+  _id: 6ac5aa0a-72e0-4b88-95e7-d30d1a4ed68a
 --- !u!65 &1834588520
 BoxCollider:
   m_ObjectHideFlags: 0

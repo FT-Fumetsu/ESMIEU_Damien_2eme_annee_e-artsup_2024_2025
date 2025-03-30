@@ -6,6 +6,6 @@ namespace Serialisation
     public class SaveData
     {
         public PlayerDTO PlayerDTO;
-        public List<ChestDTO> ChestDTO;
+        public List<ChestDTO> ChestListDTO;
     }
 }

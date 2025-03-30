@@ -14,14 +14,7 @@ namespace PlayerStats
             get {  return _cash; }
             set
             {
-                if (value < 0)
-                {
-                    _cash = 0;
-                }
-                else
-                {
-                    _cash = value;
-                }
+                _cash = Mathf.Max(0, value);
             }
         }
 
