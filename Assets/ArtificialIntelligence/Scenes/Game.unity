@@ -4086,9 +4086,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a3402659554c64b8182424129a5f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9182622676876063727, guid: de0c991c17c4ff84fb47cd3f760b9a01,
+  _enemyPrefab: {fileID: 9182622676876063727, guid: de0c991c17c4ff84fb47cd3f760b9a01,
     type: 3}
-  spawnInterval: 2
+  _spawnInterval: 2
 --- !u!1 &1441120620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5300,9 +5300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a3402659554c64b8182424129a5f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9182622676876063727, guid: 1efb3c8edbf9eeb4fb44c502d47924c2,
+  _enemyPrefab: {fileID: 9182622676876063727, guid: 1efb3c8edbf9eeb4fb44c502d47924c2,
     type: 3}
-  spawnInterval: 1
+  _spawnInterval: 2
 --- !u!4 &1727704728
 Transform:
   m_ObjectHideFlags: 0
